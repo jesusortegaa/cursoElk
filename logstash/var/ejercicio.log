@@ -1,0 +1,8 @@
+2023-10-14T14:30:15 [INFO] User 128.56.42.19 accessed /download/file.zip | Browser: Edge/18.1, OS: Windows and Device: Lenovo Thinkpad T470. Geo-location: US -> CA (Lat: 36.7783, Lon: -119.4179)
+2023-10-14T15:45:20 [INFO] User 66.249.66.1 accessed /data/document.pdf | Browser: Firefox/5.0, OS: Android and Device: Google Pixel 8. Geo-location: US -> NY (Lat: 40.7128, Lon: -74.0060)
+2023-10-14T16:20:05 [ERROR] User 203.0.113.7 attempted to access /restricted-page | Browser: Firefox/5.0, OS: Linux and Device: VANT MOOVE14. Geo-location: US -> TX (Lat: 30.2672, Lon: -97.7431)
+2023-10-14T17:10:30 [INFO] User 45.33.24.112 accessed /video/stream.mp4 | Browser: Safari/537.36, OS: macOS and Device: MacBook Pro 2018. Geo-location: US -> CA (Lat: 37.7749, Lon: -122.4194)
+2023-10-14T18:15:44 [INFO] User 178.79.100.2 accessed /index.html | Browser: Chrome/5.0, OS: ChromeOS and Device: Chromebook. Geo-location: DE -> FR (Lat: 48.8566, Lon: 2.3522)
+2023-10-14T19:40:55 [INFO] User 103.22.32.15 accessed /app/login | Browser: Chrome/4.7, OS: macOS and Device: iMac 2018. Geo-location: SG -> JP (Lat: 35.682839, Lon: 139.759455)
+2023-10-14T20:55:22 [INFO] User 78.33.10.11 accessed /blog/post123 | Browser: Edge/5.0, OS: Windows and Device: DELL Inspiron 15. Geo-location: UK -> IE (Lat: 53.349805, Lon: -6.26031)
+2023-10-14T21:20:10 [INFO] User 192.168.1.2 accessed /internal/api/data | Browser: Safari/5.0, OS: iOS and Device: iPhone 15 Pro Max. Geo-location: RU -> RU (Lat: 55.7558, Lon: 37.6176)

@@ -1,0 +1,38 @@
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    environment:
+      - node.name=elasticsearch
+      - discovery.type=single-node #Creamos un cluster de un único nodo (por defecto es multinodo)
+    ports:
+      - 9200:9200
+      - 9300:9300 #Se establecen dos puertos, uno para la comunicación entre contenedores y otro para el usuario
+    networks:
+      - elk
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data #Guardar la información en local para mantener la información en caso de borrar el contenedor
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.10.0
+    ports:
+      - 5044:5044
+    volumes:
+      - ./logstash/config:/usr/share/logstash/config #Pasar la configuración de pipelines.yml
+      - ./logstash/pipeline:/usr/share/logstash/pipeline #Pasar la configuración de las pipelines al contenedor.
+      - ./logstash/var:/usr/share/logstash/var #Pasar las trazas (contenidas en var) dentro del contenedor.
+    networks:
+      - elk
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.10.0
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    networks:
+      - elk
+
+networks:
+  elk:
+    driver: bridge
