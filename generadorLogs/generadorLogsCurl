@@ -1,0 +1,85 @@
+import json
+from time import sleep
+import requests
+
+from generadorLogs import crearTraza, crearUsuarios
+
+
+
+def enviarTrazaElastic(usuarios):
+    trazas = []
+    
+    while(True):
+        pass#TODO aqui es donde enviamos las trazas a Elasticsearch
+
+#usuarios = crearUsuarios(10)
+
+#enviarTrazaElastic(usuarios)
+
+
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0',
+    'Accept': 'application/json, text/plain, */*',
+    'Accept-Language': 'en-GB',
+    # 'Accept-Encoding': 'gzip, deflate, br',
+    'Referer': 'https://www.nasdaq.com/',
+    'Origin': 'https://www.nasdaq.com',
+    'Connection': 'keep-alive',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-site',
+    'Pragma': 'no-cache',
+    'Cache-Control': 'no-cache',
+}
+
+params = {
+    'assetclass': 'stocks',
+}
+
+response = requests.get('https://api.nasdaq.com/api/quote/AAPL/info', params=params, headers=headers)
+
+data = response.json()
+#print(data.get('data').get('companyName'))
+
+print(data)
+
+# Definir la URL de la solicitud
+ELASTIC_URL = "http://localhost:9200"
+INDEX_NAME = "trazasEnVivo"
+INDEX_CONFIG = {
+    "mappings":{
+        "properties":{
+            "campo1":{"type":"text"}
+        }
+    }
+}
+
+url = f"{ELASTIC_URL}/{INDEX_NAME}"
+headers = {'Content-Type': 'application/json'}
+
+response = requests.put(url, json=index_config, headers=headers)
+
+#Realizar operaciones con Elasticsearch:
+#Crear índice
+#PUT /indice
+
+#Eliminar índice
+#DELETE /indice
+
+#Indexar documento (sin ID)
+#POST /indice/_doc
+
+#Indexar docuemnto (con ID)
+#POST /indice/_doc/100
+
+#Recuperar documentos (con ID)
+#GET /indice/_doc/100
+
+#"Actualizar" documentos (con ID)
+#POST /conexiones/_doc/100
+#{#http_status:200, "nuevo_campo":"nuevo"}
+
+#Realizar búsquedas
+
+
