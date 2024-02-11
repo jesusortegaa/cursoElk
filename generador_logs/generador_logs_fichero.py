@@ -6,9 +6,13 @@ def crear_logs_fichero(numUsuarios, numTrazas):
     trazas = []
     for i in range(numTrazas):
         trazas.append(crear_traza(usuarios, False))
-    
-    with open("logsTransacciones.json", "w") as fichero:
-        json.dump(trazas, fichero, indent=4)
+
+    with open("logstash/var/json.log", "w") as fichero:
+        for i in range(numTrazas):
+            fichero.write(json.dumps(trazas[i]))
+            if(i!=numTrazas-1):
+                fichero.write("\n")
+
     print("Se ha creado el fichero con trazas")
 
-#crearLogFichero(10, 100)
+crear_logs_fichero(10, 10)
