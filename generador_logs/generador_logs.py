@@ -3,6 +3,7 @@ import string
 import random
 import datetime
 
+
 def crear_usuario():
     #Un usuario serán 3 letras y 6 numero
     user = ""
@@ -81,15 +82,16 @@ def crear_transaccion(usuario1, usuario2):
 
     return transaccion
 
-def crear_fecha(actual):
-    if(actual == False):
+def crear_fecha(reciente):
+    if(reciente == False):
         inicio = datetime.datetime(2023, 1, 1)
         final = datetime.datetime(2024, 1, 1)
+        random_date = inicio + (final - inicio) * random.random()
     else:
-        inicio = datetime.datetime(2024, 1, 1)
+        inicio = datetime.datetime(2024, 2, 1)
         final = datetime.datetime(2024, 2, 12)
-    
-    random_date = inicio + (final - inicio) * random.random()
+        random_date = inicio + (final - inicio) * random.random()
+
     return random_date
 
 def crear_traza(usuarios, actual):

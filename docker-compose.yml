@@ -10,8 +10,8 @@ services:
       - 9300:9300 #Se establecen dos puertos, uno para la comunicación entre contenedores y otro para el usuario
     networks:
       - elk
-    volumes:
-      - ./elasticsearch/data:/usr/share/elasticsearch/data #Guardar la información en local para mantener la información en caso de borrar el contenedor
+    # volumes:
+    #   - ./elasticsearch/data:/usr/share/elasticsearch/data #Guardar la información en local para mantener la información en caso de borrar el contenedor
 
   logstash:
     image: docker.elastic.co/logstash/logstash:7.10.0

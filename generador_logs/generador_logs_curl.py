@@ -7,7 +7,7 @@ from generador_logs import crear_traza, crear_usuarios, get_mapping
 # Definir la URL de la solicitud
 elasticsearch_url = "http://localhost:9200/"
 #Definir el nombre del índice
-index_name = "curso_kibana3"
+index_name = "curso_kibana"
 # Definir URL para la indexación (usando API _doc)
 url_indexacion = f"{elasticsearch_url}{index_name}/_doc"
 #Definir el header de las peticiones HTTP (para establecer que le pasamos un JSON)
@@ -18,7 +18,7 @@ mapping = get_mapping()
 usuarios = crear_usuarios(10)
 
 def check_response(response):
-    if response.status_code == 200:
+    if response.status_code == 200 or response.status_code == 201:
         print("Solicitud exitosa")
         print(response.json())
     else:
@@ -52,6 +52,7 @@ def indexar_con_id(id, actual):
     traza = json.dumps(crear_traza(usuarios, actual))
     url_indexacion_con_id = f"{elasticsearch_url}{index_name}/_doc/{id}"
     response = requests.post(url_indexacion_con_id, data=traza, headers=headers)
+    print(traza)
     check_response(response)
 
 def get_document(id):
@@ -63,12 +64,15 @@ def get_document(id):
     check_response(response)
 
 def enviarTrazaElastic(usuarios):
+    sleep(3)
     i = 1
     while(True):
         indexar_con_id(i, True)
         i = i+1
-        sleep(1)
+        if(i>100):
+            sleep(1)
 
+eliminar_indice()
 crear_indice_con_mapping()
 enviarTrazaElastic(usuarios)
 
